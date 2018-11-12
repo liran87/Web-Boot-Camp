@@ -1,0 +1,29 @@
+.Calculator {
+  margin: auto;
+  width: 25%;
+  height: 75%;
+  border-radius: 25px;
+  border: 2px solid black;
+  background-image: linear-gradient(rgb(209, 208, 208), rgb(54, 54, 54));
+  display: grid;
+  grid-template-rows: 3% 25% 2% 64% 6%;
+}
+
+.calc-screen {
+  grid-row: 2;
+  background-color: white;
+  width: 90%;
+  height: 65%;
+  padding: 2% 1% 2% 1%;
+  box-sizing: border-box;
+  border-radius: 20px;
+  border: 1px solid #353434;
+  margin: 0 auto 0 auto;
+}
+
+.calc-controls {
+  grid-row: 4;
+  width: 90%;
+  height: 100%;
+  margin: 0 auto 0 auto;
+}
