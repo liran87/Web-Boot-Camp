@@ -2,5 +2,9 @@
   text-align: center;
   height: 100vh;
   width: 100%;
-  background: rgb(248, 180, 78);
+  background-image: url('./Desktop.jpg');
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }

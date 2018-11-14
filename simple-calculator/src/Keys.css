@@ -1,0 +1,110 @@
+.grid-keys {
+  display: grid;
+  grid-template-rows: 18% 2% 18% 2% 18% 2% 18% 2% 18% 2;
+  grid-template-columns: 22% 4% 22% 4% 22% 4% 22%;
+  height: 100%;
+  width: 100%;
+}
+
+.grid-keys .key {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  padding: auto;
+  border: 1px solid #353434;
+  font-size: 2.5vw;
+  cursor: pointer;
+}
+
+.grid-keys .operator {
+  background-color: rgb(51, 176, 214);
+}
+
+.grid-keys .AC {
+  grid-column: 7;
+  grid-row: 1;
+  background-color: rgb(226, 66, 66);
+  color: white;
+  font-size: 1.5vw;
+}
+
+.grid-keys .seven {
+  grid-column: 1;
+  grid-row: 3;
+}
+
+.grid-keys .eight {
+  grid-column: 3;
+  grid-row: 3;
+}
+
+.grid-keys .nine {
+  grid-column: 5;
+  grid-row: 3;
+}
+
+.grid-keys .subtraction {
+  grid-column: 7;
+  grid-row: 3;
+}
+
+.grid-keys .four {
+  grid-column: 1;
+  grid-row: 5;
+}
+
+.grid-keys .five {
+  grid-column: 3;
+  grid-row: 5;
+}
+
+.grid-keys .six {
+  grid-column: 5;
+  grid-row: 5;
+}
+
+.grid-keys .division {
+  grid-column: 7;
+  grid-row: 5;
+}
+
+.grid-keys .one {
+  grid-column: 1;
+  grid-row: 7;
+}
+
+.grid-keys .two {
+  grid-column: 3;
+  grid-row: 7;
+}
+
+.grid-keys .three {
+  grid-column: 5;
+  grid-row: 7;
+}
+
+.grid-keys .multiplication {
+  grid-column: 7;
+  grid-row: 7;
+}
+
+.grid-keys .zero {
+  grid-column: 1;
+  grid-row: 9;
+}
+
+.grid-keys .decimalPoint {
+  grid-column: 3;
+  grid-row: 9;
+}
+
+.grid-keys .result {
+  grid-column: 5;
+  grid-row: 9;
+  background-color: rgb(245, 155, 53);
+}
+
+.grid-keys .addition {
+  grid-column: 7;
+  grid-row: 9;
+}
