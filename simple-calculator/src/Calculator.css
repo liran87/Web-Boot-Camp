@@ -4,7 +4,8 @@
   width: 25%;
   height: 80%;
   border-radius: 25px;
-  border: 2px solid black;
+  border: 2px solid rgb(53, 52, 52);
+  box-shadow: 10px 10px 10px rgb(20, 20, 20);
   background-image: linear-gradient(rgb(209, 208, 208), rgb(54, 54, 54));
   display: grid;
   grid-template-rows: 20% 5% 75%;
@@ -18,7 +19,7 @@
   padding: 2% 1% 2% 1%;
   box-sizing: border-box;
   border-radius: 20px;
-  border: 1px solid #353434;
+  border: 2px solid #4b4a4a;
   margin: 4% auto 0 auto;
 }
 
