@@ -7,8 +7,8 @@ export default function Keys(props) {
       <button className="key AC" onClick={props.click} value="AC">
         AC
       </button>
-      <button className="key backspace" onClick={props.click} value="backspace">
-        ⌫
+      <button className="key CE" onClick={props.click} value="CE">
+        CE
       </button>
 
       <button className="key seven" onClick={props.click} value="7">

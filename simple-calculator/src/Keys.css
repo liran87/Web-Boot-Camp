@@ -32,11 +32,11 @@
   font-size: 1.5vw;
 }
 
-.grid-keys .backspace {
+.grid-keys .CE {
   grid-column: 5;
   grid-row: 1;
-  background-color: rgb(67, 119, 67);
-  color: black;
+  background-color: rgb(88, 136, 88);
+  color: white;
   font-size: 1.5vw;
 }
 

@@ -27,7 +27,7 @@ export default class Calculator extends Component {
     };
   }
 
-  inputDigit = digit => {
+  handleInputDigit = digit => {
     const { result, waitingForSecondOperand } = this.state;
 
     if (waitingForSecondOperand === true) {
@@ -69,7 +69,7 @@ export default class Calculator extends Component {
     });
   };
 
-  inputDecimal = dot => {
+  handleInputDecimal = dot => {
     if (this.state.waitingForSecondOperand === true) {
       return;
     }
@@ -79,12 +79,12 @@ export default class Calculator extends Component {
     }
   };
 
-  clearAll = () => {
+  handleClearAll = () => {
     this.setState({ result: '0', firstOperand: null, waitingForSecondOperand: null, operator: null, expression: '' });
   };
 
-  backspace = () => {
-    this.setState({ result: this.state.result.slice(0, -1) });
+  handleClearEntry = () => {
+    this.setState({ result: '0' });
   };
 
   clickHandler = event => {
@@ -94,21 +94,21 @@ export default class Calculator extends Component {
     }
 
     if (event.target.className.includes('decimalPoint')) {
-      this.inputDecimal(event.target.value);
+      this.handleInputDecimal(event.target.value);
       return;
     }
 
     if (event.target.className.includes('AC')) {
-      this.clearAll();
+      this.handleClearAll();
       return;
     }
 
-    if (event.target.className.includes('backspace')) {
-      this.backspace();
+    if (event.target.className.includes('CE')) {
+      this.handleClearEntry();
       return;
     }
 
-    this.inputDigit(event.target.value);
+    this.handleInputDigit(event.target.value);
   };
 
   render() {
