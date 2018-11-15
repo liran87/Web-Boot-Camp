@@ -18,15 +18,36 @@ const performCalculation = {
 export default class Calculator extends Component {
   constructor(props) {
     super(props);
-    this.state = { result: '0', firstOperand: null, waitingForSecondOperand: false, operator: null };
+    this.state = {
+      result: '0',
+      firstOperand: null,
+      waitingForSecondOperand: false,
+      operator: null,
+      expression: '',
+    };
   }
 
+  inputDigit = digit => {
+    const { result, waitingForSecondOperand } = this.state;
+
+    if (waitingForSecondOperand === true) {
+      this.setState({ result: digit, waitingForSecondOperand: false });
+    } else {
+      let concatDigits = result === '0' ? digit : result + digit;
+      this.setState({ result: concatDigits });
+    }
+  };
+
   handleOperator = nextOperator => {
-    const { firstOperand, waitingForSecondOperand, result, operator } = this.state;
+    const { result, firstOperand, waitingForSecondOperand, operator } = this.state;
     const inputValue = parseFloat(result);
 
-    if (operator && waitingForSecondOperand) {
-      this.setState({ operator: nextOperator });
+    this.setState({
+      expression: nextOperator === '=' ? '' : this.state.expression + this.state.result + nextOperator,
+    });
+
+    if (operator && operator !== '=' && nextOperator !== '=' && waitingForSecondOperand) {
+      this.setState({ operator: nextOperator, expression: this.state.expression.replace(/.$/, nextOperator) });
       return;
     }
 
@@ -36,12 +57,16 @@ export default class Calculator extends Component {
       const currentValue = firstOperand || 0;
       const value = performCalculation[operator](currentValue, inputValue);
 
-      this.setState({ result: String(value) });
-      this.setState({ firstOperand: value });
+      this.setState({
+        result: String(value),
+        firstOperand: value,
+      });
     }
 
-    this.setState({ waitingForSecondOperand: true });
-    this.setState({ operator: nextOperator });
+    this.setState({
+      waitingForSecondOperand: true,
+      operator: nextOperator,
+    });
   };
 
   inputDecimal = dot => {
@@ -54,19 +79,8 @@ export default class Calculator extends Component {
     }
   };
 
-  inputDigit = digit => {
-    const { result, waitingForSecondOperand } = this.state;
-
-    if (waitingForSecondOperand === true) {
-      this.setState({ result: digit });
-      this.setState({ waitingForSecondOperand: false });
-    } else {
-      this.setState({ result: result === '0' ? digit : result + digit });
-    }
-  };
-
   clearAll = () => {
-    this.setState({ result: '0', firstOperand: null, waitingForSecondOperand: null, operator: null });
+    this.setState({ result: '0', firstOperand: null, waitingForSecondOperand: null, operator: null, expression: '' });
   };
 
   clickHandler = event => {
@@ -86,12 +100,6 @@ export default class Calculator extends Component {
     }
 
     this.inputDigit(event.target.value);
-    // let expression = this.state.expression;
-    // let value = event.target.value;
-    // let newExpression = expression + value;
-
-    // let result = newExpression;
-    // this.setState({ expression: newExpression, result: result });
   };
 
   render() {

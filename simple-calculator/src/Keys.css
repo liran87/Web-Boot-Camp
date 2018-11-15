@@ -16,6 +16,10 @@
   cursor: pointer;
 }
 
+.key:active {
+  transform: translateY(1px);
+}
+
 .grid-keys .operator {
   background-color: rgb(51, 176, 214);
 }
