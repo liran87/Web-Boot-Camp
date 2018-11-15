@@ -83,6 +83,10 @@ export default class Calculator extends Component {
     this.setState({ result: '0', firstOperand: null, waitingForSecondOperand: null, operator: null, expression: '' });
   };
 
+  backspace = () => {
+    this.setState({ result: this.state.result.slice(0, -1) });
+  };
+
   clickHandler = event => {
     if (event.target.className.includes('operator')) {
       this.handleOperator(event.target.value);
@@ -96,6 +100,11 @@ export default class Calculator extends Component {
 
     if (event.target.className.includes('AC')) {
       this.clearAll();
+      return;
+    }
+
+    if (event.target.className.includes('backspace')) {
+      this.backspace();
       return;
     }
 
