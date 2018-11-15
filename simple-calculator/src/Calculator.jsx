@@ -15,6 +15,8 @@ const performCalculation = {
   '=': (firstOperand, secondOperand) => secondOperand,
 };
 
+const digitsKeyCode = [96, 97, 98, 99, 100, 101, 102, 103, 104, 105];
+
 export default class Calculator extends Component {
   constructor(props) {
     super(props);
@@ -25,6 +27,7 @@ export default class Calculator extends Component {
       operator: null,
       expression: '',
     };
+    this.calculatorDiv = React.createRef();
   }
 
   handleInputDigit = digit => {
@@ -39,15 +42,16 @@ export default class Calculator extends Component {
   };
 
   handleOperator = nextOperator => {
-    const { result, firstOperand, waitingForSecondOperand, operator } = this.state;
+    const { result, firstOperand, waitingForSecondOperand, operator, expression } = this.state;
     const inputValue = parseFloat(result);
 
     this.setState({
-      expression: nextOperator === '=' ? '' : this.state.expression + this.state.result + nextOperator,
+      expression: nextOperator === '=' ? '' : this.state.expression + this.state.result + ' ' + nextOperator + ' ',
     });
 
     if (operator && operator !== '=' && nextOperator !== '=' && waitingForSecondOperand) {
-      this.setState({ operator: nextOperator, expression: this.state.expression.replace(/.$/, nextOperator) });
+      let newExpression = expression.substring(0, expression.length - 2) + nextOperator + ' ';
+      this.setState({ operator: nextOperator, expression: newExpression });
       return;
     }
 
@@ -111,9 +115,51 @@ export default class Calculator extends Component {
     this.handleInputDigit(event.target.value);
   };
 
+  componentDidMount() {
+    this.calculatorDiv.current.focus();
+  }
+
+  keyDownHandler = event => {
+    const key = event.key;
+    const keyCode = event.keyCode;
+
+    if (keyCode === 107 || keyCode === 109 || keyCode === 187) {
+      this.handleOperator(key);
+      return;
+    }
+    if (keyCode === 13) {
+      this.handleOperator('=');
+      return;
+    }
+    if (keyCode === 111) {
+      this.handleOperator('÷');
+      return;
+    }
+    if (keyCode === 106) {
+      this.handleOperator('x');
+      return;
+    }
+    if (keyCode === 110) {
+      this.handleInputDecimal('.');
+      return;
+    }
+    if (digitsKeyCode.includes(keyCode)) {
+      this.handleInputDigit(key);
+      return;
+    }
+    if (keyCode === 46 || keyCode === 8) {
+      this.handleClearEntry();
+      return;
+    }
+    if (keyCode === 27) {
+      this.handleClearAll();
+      return;
+    }
+  };
+
   render() {
     return (
-      <div className="calculator">
+      <div tabIndex="0" className="calculator" onKeyDown={this.keyDownHandler} ref={this.calculatorDiv}>
         <div className="calc-screen">
           <Screen expression={this.state.expression} result={this.state.result} />
         </div>

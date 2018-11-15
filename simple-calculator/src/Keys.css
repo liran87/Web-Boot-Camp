@@ -11,13 +11,14 @@
   height: 100%;
   border-radius: 5px;
   padding: auto;
-  border: 1px solid #353434;
+  border: 1px solid #646464;
   font-size: 2.5vw;
   cursor: pointer;
+  box-shadow: 1.5px 1.5px 1.5px rgb(20, 20, 20);
 }
 
 .key:active {
-  transform: translateY(1px);
+  transform: translateY(1.5px);
 }
 
 .grid-keys .operator {
